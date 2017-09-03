@@ -11,6 +11,7 @@
 		207F515B1F5BE62A0042F9A6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 207F51591F5BE62A0042F9A6 /* Main.storyboard */; };
 		207F515D1F5BE62A0042F9A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 207F515C1F5BE62A0042F9A6 /* Assets.xcassets */; };
 		207F51601F5BE62A0042F9A6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 207F515E1F5BE62A0042F9A6 /* LaunchScreen.storyboard */; };
+		207F51681F5CCC880042F9A6 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207F51671F5CCC880042F9A6 /* HomeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +21,7 @@
 		207F515C1F5BE62A0042F9A6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		207F515F1F5BE62A0042F9A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		207F51611F5BE62A0042F9A6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		207F51671F5CCC880042F9A6 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = "View Controllers/HomeViewController.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,8 +59,17 @@
 				207F515C1F5BE62A0042F9A6 /* Assets.xcassets */,
 				207F515E1F5BE62A0042F9A6 /* LaunchScreen.storyboard */,
 				207F51611F5BE62A0042F9A6 /* Info.plist */,
+				207F51691F5CCC910042F9A6 /* View Controllers */,
 			);
 			path = "perfect peech";
+			sourceTree = "<group>";
+		};
+		207F51691F5CCC910042F9A6 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				207F51671F5CCC880042F9A6 /* HomeViewController.swift */,
+			);
+			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,6 +146,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				207F51561F5BE62A0042F9A6 /* AppDelegate.swift in Sources */,
+				207F51681F5CCC880042F9A6 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
