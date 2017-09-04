@@ -23,12 +23,8 @@ class HomeViewController: UIViewController, AVAudioRecorderDelegate {
     /// - Parameter sender: Any is the sender parameter
     @IBAction func recordButtonTapped(_ sender: Any) {
         
-        self.TapToRecordLabel.text = " Recording..."
-        self.recordButton.isEnabled = false
-        self.stopButton.isEnabled = true
-        
+       
         let dirPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
-        
         
         let recordingName = "recordedVoice.wav"
         
@@ -46,16 +42,15 @@ class HomeViewController: UIViewController, AVAudioRecorderDelegate {
         self.audioRecord.isMeteringEnabled = true
         self.audioRecord.prepareToRecord()
         self.audioRecord.record()
+         self.configureUI(isRecording: self.audioRecord.isRecording)
     }
     
     /// function to stop recording when user tap the
     /// stop button
     /// - Parameter sender: any is the sender parameter
     @IBAction func stopButtonTapped(_ sender: Any) {
-        self.recordButton.isEnabled = true
-        self.stopButton.isEnabled = false
         
-        self.TapToRecordLabel.text = "Tap To Record"
+        self.configureUI(isRecording: self.audioRecord.isRecording)
         self.audioRecord.stop()
         let audioSession = AVAudioSession.sharedInstance()
         try! audioSession.setActive(false)
@@ -83,13 +78,39 @@ class HomeViewController: UIViewController, AVAudioRecorderDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         
-        self.stopButton.isEnabled = false
-
+    self.configureUI(isRecording: false)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
     }
+
+    /// function to configure the UI when recording and when not recording
+    func configureUI( isRecording: Bool){
+        if isRecording{
+         
+            self.TapToRecordLabel.text = " Recording..."
+            self.recordButton.isEnabled = false
+            self.stopButton.isEnabled = true
+
+        }
+        else{
+            self.recordButton.isEnabled = true
+            self.stopButton.isEnabled = false
+            self.TapToRecordLabel.text = "Tap To Record"
+        }
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+

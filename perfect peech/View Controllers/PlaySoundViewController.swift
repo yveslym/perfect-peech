@@ -30,6 +30,7 @@ class PlaySoundViewController: UIViewController {
     }
     
     
+    /// function to setup the buttons view to fit instead of stretching
     func avoidButtonStregtch(){
         self.slowButton.contentMode = .center
         self.slowButton.imageView?.contentMode = .scaleAspectFit
@@ -54,6 +55,7 @@ class PlaySoundViewController: UIViewController {
     }
     
     @IBAction func playSoundForButton(_ sender: UIButton){
+       
         switch(ButtonType(rawValue: sender.tag)!){
         case .slow: playSound(rate: 0.5)
         case .speed: playSound(rate: 1.5)
