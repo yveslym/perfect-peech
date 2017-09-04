@@ -9,8 +9,8 @@
 import UIKit
 import AVFoundation
 
-class HomeViewController: UIViewController {
-
+class HomeViewController: UIViewController, AVAudioRecorderDelegate {
+    
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var stopButton: UIButton!
     @IBOutlet weak var TapToRecordLabel: UILabel!
@@ -22,14 +22,14 @@ class HomeViewController: UIViewController {
     /// when user press the record button
     /// - Parameter sender: Any is the sender parameter
     @IBAction func recordButtonTapped(_ sender: Any) {
-    
+        
         self.TapToRecordLabel.text = " Recording..."
         self.recordButton.isEnabled = false
         self.stopButton.isEnabled = true
         
         let dirPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
         
-    
+        
         let recordingName = "recordedVoice.wav"
         
         let pathArray = [dirPath,recordingName]
@@ -38,10 +38,11 @@ class HomeViewController: UIViewController {
         
         let session = AVAudioSession.sharedInstance()
         
-    
+        
         try! session.setCategory(AVAudioSessionCategoryPlayAndRecord, with:AVAudioSessionCategoryOptions.defaultToSpeaker)
-
+        
         try! self.audioRecord = AVAudioRecorder(url: filePath!, settings: [:])
+        self.audioRecord.delegate = self
         self.audioRecord.isMeteringEnabled = true
         self.audioRecord.prepareToRecord()
         self.audioRecord.record()
@@ -61,17 +62,28 @@ class HomeViewController: UIViewController {
         
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "record"{
+            
+            let playsoundvc = segue.destination as! PlaySoundViewController
+            let recordedAudioURL = sender as! URL
+            playsoundvc.recordedAudioURL = recordedAudioURL
+        }
+    }
     
+    func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
+        
+        if flag{
+            self.performSegue(withIdentifier: "record", sender: self.audioRecord.url)
+        }
+        else{
+            print("failed")
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
 }
