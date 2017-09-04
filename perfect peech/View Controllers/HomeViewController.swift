@@ -81,6 +81,12 @@ class HomeViewController: UIViewController, AVAudioRecorderDelegate {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        
+        self.stopButton.isEnabled = false
+
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
